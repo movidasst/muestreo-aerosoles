@@ -13,13 +13,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="auth-locked">
+  <section class="login-gate" id="loginGate">
+    <div class="login-layout">
+      <div class="login-story">
+        <a class="login-brand" href="https://laboratorio.movidasst.com"><img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt="La Movida de SST Plus"><span><strong>La Movida de SST Plus</strong><small>De la Reacción a la Prevención</small></span></a>
+        <div><p class="login-eyebrow">LABORATORIO DE HIGIENE OCUPACIONAL</p><h1>Aprende a muestrear<br><em>aerosoles.</em></h1><p>Planifica, arma, calibra, muestrea y calcula una concentración gravimétrica en mg/m³.</p><div class="login-features"><span><b>01</b>Fracciones ISO</span><span><b>02</b>Calibración</span><span><b>03</b>Guía didáctica</span></div></div>
+        <a class="login-back" href="https://laboratorio.movidasst.com">← Volver al Laboratorio Virtual</a>
+      </div>
+      <div class="login-card">
+        <div class="login-card-heading"><span>+</span><div><p>ÁREA DE PRÁCTICA · SST+</p><h2>Identifica tu acceso</h2></div></div>
+        <p>Ingresa con la cédula y el código de integrante registrados en La Movida de SST Plus.</p>
+        <form id="memberLogin" class="login-form" novalidate>
+          <label for="memberId">Cédula de identidad</label><input id="memberId" inputmode="numeric" autocomplete="username" maxlength="20" placeholder="Solo números" required>
+          <label for="memberPassword">Clave o código de integrante</label><div class="password-field"><input id="memberPassword" type="password" autocomplete="current-password" maxlength="80" placeholder="Escribe tu clave" required><button id="togglePassword" type="button">Mostrar</button></div>
+          <p id="loginMessage" class="login-message" role="status" aria-live="polite"></p>
+          <button id="loginSubmit" class="login-submit" type="submit"><span>Abrir simulador</span><i>→</i></button>
+        </form>
+        <div class="register-callout"><strong>¿No estás registrado?</strong><span>Regístrate gratuitamente para obtener tu código de integrante.</span><a href="https://registro.movidasst.com">Registrarme ahora</a></div>
+        <p class="login-privacy">La validación se realiza con el registro oficial. Esta aplicación no guarda tu cédula ni tu clave.</p>
+      </div>
+    </div>
+  </section>
   <header class="topbar">
     <a class="brand" href="https://laboratorio.movidasst.com" aria-label="Volver al Laboratorio Virtual">
       <img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt="La Movida de SST Plus">
       <span><b>Laboratorio Virtual</b><small>De la Reacción a la Prevención</small></span>
     </a>
-    <button class="icon-button" id="helpBtn" aria-label="Ayuda">?</button>
+    <div class="top-actions"><span class="member-chip">Hola, <b id="memberName">integrante</b></span><button class="icon-button" id="helpBtn" aria-label="Guía de uso">?</button><button class="logout-button" id="logoutBtn">Salir</button></div>
   </header>
 
   <main>
@@ -143,7 +164,21 @@
     </section>
   </main>
 
-  <dialog id="helpDialog"><button class="dialog-close" aria-label="Cerrar">×</button><h2>¿Qué estás simulando?</h2><p>Una bomba aspira un volumen conocido de aire a través de un selector y un filtro previamente pesado. El laboratorio determina la masa captada y la divide entre el volumen muestreado.</p><div class="warning"><b>Uso educativo</b><p>Este simulador no sustituye un método validado, la calibración trazable, el análisis de laboratorio ni el criterio de un higienista ocupacional.</p></div><button class="primary dialog-close">Entendido</button></dialog>
+  <dialog id="helpDialog" class="help-dialog"><button class="dialog-close" aria-label="Cerrar">×</button><p class="eyebrow">GUÍA DE USO</p><h2>Cómo realizar un muestreo de aerosoles</h2><p class="dialog-intro">Consulta el procedimiento mientras practicas. El método específico del agente siempre determina el muestreador, filtro, caudal y análisis.</p>
+    <label class="manual-search">Buscar en la guía<input id="manualSearch" type="search" placeholder="Ej.: IOM, ciclón, blanco, caudal…"></label>
+    <nav class="manual-nav"><button data-manual-target="manual-start">Secuencia</button><button data-manual-target="manual-fractions">Fracciones</button><button data-manual-target="manual-calibration">Calibración</button><button data-manual-target="manual-calculation">Cálculo</button><button data-manual-target="manual-errors">Errores</button></nav>
+    <div class="manual-quick-start"><strong>Secuencia profesional</strong><ol><li>Planificar</li><li>Preparar</li><li>Calibrar</li><li>Muestrear</li><li>Pesar</li><li>Interpretar</li></ol></div>
+    <div class="function-manual">
+      <details id="manual-start" open><summary>Procedimiento completo</summary><div class="manual-body"><ol><li><b>Define el objetivo:</b> agente, tarea, trabajadores, periodo y límite aplicable.</li><li><b>Selecciona el método:</b> fracción, muestreador, filtro, caudal y volumen.</li><li><b>Prepara:</b> acondiciona y pesa filtros y blancos; inspecciona bomba y conexiones.</li><li><b>Calibra:</b> mide el caudal volumétrico con el tren representativo completamente armado.</li><li><b>Muestrea:</b> coloca el cabezal en la zona respiratoria y registra tiempo e incidencias.</li><li><b>Verifica:</b> mide el caudal final y aplica el criterio del método.</li><li><b>Analiza:</b> acondiciona, pesa, corrige con blancos y calcula masa/volumen.</li></ol></div></details>
+      <details id="manual-fractions"><summary>Inhalable, torácica y respirable</summary><div class="manual-body"><p><b>Inhalable:</b> material que entra por nariz y boca; puede captarse con IOM a 2,0 L/min. <b>Torácica:</b> penetra más allá de la laringe. <b>Respirable:</b> alcanza la región de intercambio gaseoso; se obtiene con un selector como un ciclón.</p><p class="manual-tip"><b>No son sinónimos:</b> el cassette cerrado tradicional de 37 mm para “polvo total” no representa automáticamente la fracción inhalable ISO 7708.</p></div></details>
+      <details id="manual-equipment"><summary>Tren y componentes</summary><div class="manual-body"><ul><li><b>Bomba tipo P:</b> mantiene el flujo frente a la contrapresión.</li><li><b>IOM:</b> se pesa normalmente como cassette + filtro.</li><li><b>Ciclón:</b> separa partículas gruesas; el depósito del recipiente no forma parte de la fracción respirable.</li><li><b>Filtro:</b> lo determina el método y el análisis posterior.</li><li><b>Manguera:</b> hermética y sin dobleces.</li></ul></div></details>
+      <details id="manual-calibration"><summary>Calibración inicial y final</summary><div class="manual-body"><p>Usa un calibrador trazable y flujo <b>volumétrico</b>. Conecta el tren completo tal como será utilizado y realiza varias lecturas estables. Al finalizar, repite la verificación.</p><p class="manual-tip">MDHS 14/4 invalida una muestra con ciclón si el caudal final difiere del inicial más de 0,1 L/min o 5 %, el valor mayor.</p></div></details>
+      <details id="manual-sampling"><summary>Muestreo personal y representatividad</summary><div class="manual-body"><p>Sujeta el cabezal en la parte superior del tórax, próximo a nariz y boca. Registra trabajador, tarea, inicio, final, pausas, controles e incidencias. No inviertas el ciclón y evita golpes, salpicaduras o sobrecarga.</p></div></details>
+      <details id="manual-lab"><summary>Filtros, blancos y pesaje</summary><div class="manual-body"><p>Acondiciona muestras y blancos bajo las mismas condiciones de temperatura y humedad. Utiliza pinzas, elimina electricidad estática y verifica la balanza. MDHS 14/4 indica al menos un blanco por cada diez muestras y un mínimo de tres por lote.</p></div></details>
+      <details id="manual-calculation"><summary>Volumen y concentración en mg/m³</summary><div class="manual-body"><p><b>Volumen:</b> V = Qprom × t / 1000. <b>Masa corregida:</b> M = (Pf − Pi) − B. <b>Concentración:</b> C = M / V.</p><p class="manual-tip">La gravimetría cuantifica masa de aerosol. Para conocer sílice, metales u otro compuesto se necesita el análisis específico.</p></div></details>
+      <details id="manual-errors"><summary>Errores frecuentes</summary><div class="manual-body"><ul><li>Elegir la fracción sin revisar el efecto en salud.</li><li>Calibrar solo la bomba, sin cabezal y filtro.</li><li>Aplicar el mismo caudal a cualquier ciclón.</li><li>Colocar el cabezal fuera de la zona respiratoria.</li><li>Invertir el ciclón o contar el polvo del recipiente.</li><li>No utilizar blancos o no acondicionar los filtros.</li><li>Interpretar una medición corta como toda la jornada.</li></ul></div></details>
+    </div><p id="manualEmpty" class="manual-empty" hidden>No encontramos ese término. Prueba con “fracción”, “caudal”, “IOM”, “ciclón” o “blanco”.</p><div class="warning"><b>Uso educativo</b><p>El simulador no sustituye un método validado, calibración trazable, laboratorio competente ni el criterio profesional.</p></div><button class="primary dialog-close">Volver al simulador</button>
+  </dialog>
 
   <footer><b>La Movida de SST Plus</b><span>De la Reacción a la Prevención</span><a href="https://www.movidasst.com">www.movidasst.com</a></footer>
   <script src="app.js"></script>
