@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#00205b">
+  <meta name="description" content="Simulador didáctico de muestreo gravimétrico de aerosoles ocupacionales en mg/m³.">
+  <meta property="og:title" content="Simulador de Muestreo de Aerosoles | La Movida de SST Plus">
+  <meta property="og:description" content="Selecciona, calibra y utiliza un tren de muestreo personal para determinar aerosoles ocupacionales en mg/m³.">
+  <title>Simulador de Muestreo de Aerosoles | La Movida de SST Plus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="https://laboratorio.movidasst.com" aria-label="Volver al Laboratorio Virtual">
+      <img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt="La Movida de SST Plus">
+      <span><b>Laboratorio Virtual</b><small>De la Reacción a la Prevención</small></span>
+    </a>
+    <button class="icon-button" id="helpBtn" aria-label="Ayuda">?</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Higiene ocupacional · mg/m³</span>
+        <h1>Simulador de Muestreo de Aerosoles</h1>
+        <p>Arma un tren de muestreo personal, calibra el caudal, toma la muestra y determina la concentración gravimétrica.</p>
+      </div>
+      <div class="mode-switch" role="group" aria-label="Modo">
+        <button class="active" data-mode="guided">Guiado</button>
+        <button data-mode="practice">Práctica</button>
+      </div>
+    </section>
+
+    <nav class="steps" aria-label="Progreso">
+      <button class="active" data-step="0"><span>1</span>Planificar</button>
+      <button data-step="1"><span>2</span>Armar</button>
+      <button data-step="2"><span>3</span>Calibrar</button>
+      <button data-step="3"><span>4</span>Muestrear</button>
+      <button data-step="4"><span>5</span>Laboratorio</button>
+      <button data-step="5"><span>6</span>Resultado</button>
+    </nav>
+
+    <section class="workspace">
+      <article class="stage active" data-stage="0">
+        <div class="section-heading"><div><span class="step-label">PASO 1</span><h2>Planifica la medición</h2></div><span class="status neutral">Sin iniciar</span></div>
+        <div class="scenario-grid">
+          <button class="scenario selected" data-scenario="silica"><span class="scenario-icon">▦</span><b>Corte de concreto</b><small>Sílice / polvo respirable</small></button>
+          <button class="scenario" data-scenario="wood"><span class="scenario-icon">≋</span><b>Carpintería</b><small>Polvo de madera inhalable</small></button>
+          <button class="scenario" data-scenario="flour"><span class="scenario-icon">◌</span><b>Manipulación de harina</b><small>Polvo orgánico inhalable</small></button>
+        </div>
+        <div class="info-panel"><b>Objetivo del caso</b><p id="objective">Determinar la fracción respirable generada durante el corte de concreto. El análisis específico de sílice requeriría una técnica posterior; aquí practicarás la captación y el cálculo gravimétrico.</p></div>
+        <label class="field">Fracción que se debe captar
+          <select id="fraction"><option value="">Selecciona una fracción</option><option value="inhalable">Inhalable</option><option value="thoracic" disabled>Torácica (próximo módulo)</option><option value="respirable">Respirable</option><option value="total">Polvo total tradicional</option></select>
+        </label>
+        <button class="primary next">Confirmar planificación</button>
+      </article>
+
+      <article class="stage" data-stage="1">
+        <div class="section-heading"><div><span class="step-label">PASO 2</span><h2>Arma el tren de muestreo</h2></div><span class="status neutral">0/4</span></div>
+        <p class="instruction">Selecciona cada componente. El medio y el selector deben corresponder con la fracción elegida.</p>
+        <div class="equipment-layout">
+          <div class="train" aria-label="Tren de muestreo">
+            <div class="sampler-device" id="samplerVisual"><div class="inlet"></div><div class="cyclone-cone"></div><span id="samplerName">Selector</span></div>
+            <div class="tube"></div>
+            <div class="pump">
+              <div class="pump-top"><i></i><i></i></div>
+              <div class="screen"><small>MOVI·AIR P5</small><strong id="pumpFlow">0.00</strong><em>L/min</em><span>LISTA</span></div>
+              <div class="pump-controls"><button aria-label="menos">−</button><button class="round" aria-label="iniciar">▶</button><button aria-label="más">+</button></div>
+              <b>PERSONAL SAMPLING PUMP</b>
+            </div>
+          </div>
+          <div class="choices">
+            <label class="field">Cabezal o selector<select id="sampler"><option value="">Selecciona</option><option value="iom">IOM inhalable</option><option value="aluminum">Ciclón de aluminio</option><option value="nylon">Ciclón de nylon 10 mm</option><option value="cassette">Cassette cerrado de 37 mm</option></select></label>
+            <label class="field">Medio de captación<select id="filter"><option value="">Selecciona</option><option value="pvc5">Filtro PVC 5 µm</option><option value="mce">Ésteres mixtos de celulosa</option><option value="glass">Fibra de vidrio</option></select></label>
+            <label class="field">Bomba<select id="pump"><option value="">Selecciona</option><option value="personal">Bomba personal tipo P, flujo constante</option><option value="low">Bomba de bajo flujo para gases</option></select></label>
+            <label class="check"><input id="tubeCheck" type="checkbox"> Manguera flexible sin dobleces</label>
+          </div>
+        </div>
+        <div class="feedback" id="assemblyFeedback" hidden></div>
+        <button class="primary next">Verificar montaje</button>
+      </article>
+
+      <article class="stage" data-stage="2">
+        <div class="section-heading"><div><span class="step-label">PASO 3</span><h2>Calibra el sistema completo</h2></div><span class="status neutral">Pendiente</span></div>
+        <p class="instruction">Conecta el calibrador a la entrada del muestreador. Para higiene ocupacional utilizaremos caudal volumétrico.</p>
+        <div class="calibration-bench">
+          <div class="defender"><div class="defender-head">MOVI·FLOW 530</div><div class="defender-screen"><small>Vol · Succión</small><strong id="calReading">0.000</strong><span>L/min</span><em id="calState">Preparado</em></div><div class="defender-keys"><i></i><i></i><i></i></div></div>
+          <div class="cal-tube"><span>FLUJO</span></div>
+          <div class="mini-train">Cabezal + filtro + bomba</div>
+        </div>
+        <div class="cal-controls">
+          <label class="field">Caudal objetivo<input id="targetFlow" type="number" min="0.5" max="5" step="0.1" value="2.5"><span>L/min</span></label>
+          <label class="field">Número de lecturas<select id="readingCount"><option>3</option><option>5</option><option selected>10</option></select></label>
+          <button class="secondary" id="calibrateBtn">Realizar calibración</button>
+        </div>
+        <div class="readings" id="readings"></div>
+        <button class="primary next" disabled>Guardar calibración inicial</button>
+      </article>
+
+      <article class="stage" data-stage="3">
+        <div class="section-heading"><div><span class="step-label">PASO 4</span><h2>Realiza el muestreo personal</h2></div><span class="status neutral">Pendiente</span></div>
+        <div class="worker-scene">
+          <div class="dust-cloud"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="worker"><div class="helmet"></div><div class="head"><span class="breathing-zone"></span></div><div class="torso"><span class="lapel-sampler"></span><span class="belt-pump"></span></div></div>
+          <div class="scene-label">El cabezal debe permanecer en la zona respiratoria</div>
+        </div>
+        <div class="sampling-grid">
+          <label class="field">Duración simulada<input id="duration" type="number" min="45" max="480" step="5" value="240"><span>min</span></label>
+          <label class="field">Caudal final<input id="finalFlow" type="number" min="0.5" max="5" step="0.01" value="2.49"><span>L/min</span></label>
+          <label class="check"><input id="zoneCheck" type="checkbox"> Cabezal colocado en la zona respiratoria</label>
+          <label class="check"><input id="uprightCheck" type="checkbox"> Ciclón mantenido vertical</label>
+        </div>
+        <button class="secondary" id="sampleBtn">Completar jornada simulada</button>
+        <div class="feedback" id="sampleFeedback" hidden></div>
+        <button class="primary next" disabled>Enviar al laboratorio</button>
+      </article>
+
+      <article class="stage" data-stage="4">
+        <div class="section-heading"><div><span class="step-label">PASO 5</span><h2>Procesa la muestra</h2></div><span class="status neutral">Laboratorio</span></div>
+        <div class="lab-grid">
+          <div class="balance"><div class="balance-glass"><div class="filter-disc"></div></div><div class="balance-screen"><strong id="balanceValue">0.000</strong> mg</div></div>
+          <div class="lab-fields">
+            <label class="field">Peso inicial del filtro<input id="initialMass" type="number" step="0.001" value="152.436"><span>mg</span></label>
+            <label class="field">Peso final del filtro<input id="finalMass" type="number" step="0.001" value="153.334"><span>mg</span></label>
+            <label class="field">Corrección promedio de blancos<input id="blankMass" type="number" step="0.001" value="0.018"><span>mg</span></label>
+          </div>
+        </div>
+        <div class="info-panel"><b>Control gravimétrico</b><p>Los filtros y blancos se acondicionan en la misma sala; se controla temperatura, humedad y electricidad estática antes del pesaje.</p></div>
+        <button class="primary next">Calcular concentración</button>
+      </article>
+
+      <article class="stage" data-stage="5">
+        <div class="section-heading"><div><span class="step-label">RESULTADO</span><h2>Informe de la muestra</h2></div><span class="status success">Calculado</span></div>
+        <div class="result-card"><span>Concentración gravimétrica</span><strong id="concentration">—</strong><em>mg/m³</em><p id="resultMeaning"></p></div>
+        <div class="metrics"><div><span>Masa corregida</span><b id="netMass">— mg</b></div><div><span>Volumen muestreado</span><b id="volume">— m³</b></div><div><span>Variación de caudal</span><b id="flowDiff">— %</b></div><div><span>Validez técnica</span><b id="validity">—</b></div></div>
+        <div class="formula"><b>Cálculo aplicado</b><code>C = [(Pf − Pi) − B] / V</code><p>Una concentración gravimétrica indica masa de aerosol por volumen de aire. No identifica por sí sola la composición química del polvo.</p></div>
+        <div class="actions"><button class="secondary" id="restartBtn">Nueva práctica</button><button class="primary" id="printBtn">Imprimir resultado</button></div>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="helpDialog"><button class="dialog-close" aria-label="Cerrar">×</button><h2>¿Qué estás simulando?</h2><p>Una bomba aspira un volumen conocido de aire a través de un selector y un filtro previamente pesado. El laboratorio determina la masa captada y la divide entre el volumen muestreado.</p><div class="warning"><b>Uso educativo</b><p>Este simulador no sustituye un método validado, la calibración trazable, el análisis de laboratorio ni el criterio de un higienista ocupacional.</p></div><button class="primary dialog-close">Entendido</button></dialog>
+
+  <footer><b>La Movida de SST Plus</b><span>De la Reacción a la Prevención</span><a href="https://www.movidasst.com">www.movidasst.com</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>
