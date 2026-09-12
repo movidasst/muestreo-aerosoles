@@ -40,7 +40,7 @@
       <img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt="La Movida de SST Plus">
       <span><b>Laboratorio Virtual</b><small>De la Reacción a la Prevención</small></span>
     </a>
-    <div class="top-actions"><span class="member-chip">Hola, <b id="memberName">integrante</b></span><button class="icon-button" id="helpBtn" aria-label="Guía de uso">?</button><button class="logout-button" id="logoutBtn">Salir</button></div>
+    <div class="top-actions"><a class="lab-return" href="https://laboratorio.movidasst.com">← <span>Volver al Laboratorio</span></a><span class="member-chip">Hola, <b id="memberName">integrante</b></span><button class="icon-button" id="helpBtn" aria-label="Guía de uso">?</button><button class="logout-button" id="logoutBtn">Salir</button></div>
   </header>
 
   <main>
@@ -177,7 +177,37 @@
       <details id="manual-lab"><summary>Filtros, blancos y pesaje</summary><div class="manual-body"><p>Acondiciona muestras y blancos bajo las mismas condiciones de temperatura y humedad. Utiliza pinzas, elimina electricidad estática y verifica la balanza. MDHS 14/4 indica al menos un blanco por cada diez muestras y un mínimo de tres por lote.</p></div></details>
       <details id="manual-calculation"><summary>Volumen y concentración en mg/m³</summary><div class="manual-body"><p><b>Volumen:</b> V = Qprom × t / 1000. <b>Masa corregida:</b> M = (Pf − Pi) − B. <b>Concentración:</b> C = M / V.</p><p class="manual-tip">La gravimetría cuantifica masa de aerosol. Para conocer sílice, metales u otro compuesto se necesita el análisis específico.</p></div></details>
       <details id="manual-errors"><summary>Errores frecuentes</summary><div class="manual-body"><ul><li>Elegir la fracción sin revisar el efecto en salud.</li><li>Calibrar solo la bomba, sin cabezal y filtro.</li><li>Aplicar el mismo caudal a cualquier ciclón.</li><li>Colocar el cabezal fuera de la zona respiratoria.</li><li>Invertir el ciclón o contar el polvo del recipiente.</li><li>No utilizar blancos o no acondicionar los filtros.</li><li>Interpretar una medición corta como toda la jornada.</li></ul></div></details>
-    </div><p id="manualEmpty" class="manual-empty" hidden>No encontramos ese término. Prueba con “fracción”, “caudal”, “IOM”, “ciclón” o “blanco”.</p><div class="warning"><b>Uso educativo</b><p>El simulador no sustituye un método validado, calibración trazable, laboratorio competente ni el criterio profesional.</p></div><button class="primary dialog-close">Volver al simulador</button>
+    </div><p id="manualEmpty" class="manual-empty" hidden>No encontramos ese término. Prueba con “fracción”, “caudal”, “IOM”, “ciclón” o “blanco”.</p><div class="warning"><b>Uso educativo</b><p>El simulador no sustituye un método validado, calibración trazable, laboratorio competente ni el criterio profesional.</p></div><div class="manual-actions"><button class="secondary" id="openTutorialBtn">Ver recorrido paso a paso</button><button class="primary dialog-close">Volver al simulador</button></div>
+  </dialog>
+
+  <dialog id="tutorialDialog" class="tutorial-dialog" aria-labelledby="tutorialTitle">
+    <button class="tutorial-close" id="tutorialClose" aria-label="Cerrar">×</button>
+    <div class="tutorial-brand"><img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt=""><span>LABORATORIO DIDÁCTICO</span></div>
+    <div class="tutorial-status"><span id="tutorialCounter">1 de 4</span><div><i class="active"></i><i></i><i></i><i></i></div></div>
+    <section class="tutorial-page" data-tutorial-step="0">
+      <p class="eyebrow">ANTES DE COMENZAR</p><h2 id="tutorialTitle">Aquí no “lees” mg/m³ directamente</h2>
+      <p>La bomba no es un medidor instantáneo de concentración. Aspira un volumen conocido de aire y deposita el aerosol en un filtro. Después, el laboratorio determina la masa recolectada.</p>
+      <div class="tutorial-concept"><b>AIRE</b><span>→</span><b>SELECTOR</b><span>→</span><b>FILTRO</b><span>→</span><b>LABORATORIO</b></div>
+      <p class="tutorial-callout">La concentración final se obtiene dividiendo la masa corregida entre el volumen de aire: <strong>mg/m³</strong>.</p>
+    </section>
+    <section class="tutorial-page" data-tutorial-step="1" hidden>
+      <p class="eyebrow">PASO 1 · PLANIFICAR</p><h2>Primero decides qué fracción necesitas</h2>
+      <p>El efecto en la salud y el método analítico determinan si debes captar la fracción inhalable, torácica o respirable. No se escoge el cabezal por apariencia.</p>
+      <div class="tutorial-cards"><div><b>Inhalable</b><span>Entra por nariz y boca. En el simulador usarás IOM.</span></div><div><b>Respirable</b><span>Alcanza la región profunda del pulmón. Usarás un ciclón.</span></div></div>
+      <p class="tutorial-callout warning">“Polvo total” mediante cassette cerrado no es automáticamente equivalente a fracción inhalable ISO 7708.</p>
+    </section>
+    <section class="tutorial-page" data-tutorial-step="2" hidden>
+      <p class="eyebrow">PASOS 2 A 4 · CAMPO</p><h2>Arma, calibra y controla la muestra</h2>
+      <div class="tutorial-flow"><div><i>1</i><span><b>Arma el tren</b>Cabezal, filtro, manguera y bomba.</span></div><div><i>2</i><span><b>Calibra completo</b>Usa flujo volumétrico y varias lecturas.</span></div><div><i>3</i><span><b>Ubica</b>Cabezal dentro de la zona respiratoria.</span></div><div><i>4</i><span><b>Verifica</b>Compara los caudales inicial y final.</span></div></div>
+      <p class="tutorial-callout">El caudal correcto depende del selector. Por ejemplo: IOM 2,0 L/min; ciclón de aluminio 2,5 L/min.</p>
+    </section>
+    <section class="tutorial-page" data-tutorial-step="3" hidden>
+      <p class="eyebrow">PASOS 5 Y 6 · LABORATORIO</p><h2>Pesa, corrige y calcula</h2>
+      <div class="tutorial-equations"><div><span>Volumen</span><b>V = Qprom × t / 1000</b></div><div><span>Masa corregida</span><b>M = (Pf − Pi) − B</b></div><div><span>Concentración</span><b>C = M / V</b></div></div>
+      <p>La aplicación te acompañará con mensajes de error y no permitirá avanzar si el montaje o la validez técnica no son correctos.</p>
+      <p class="tutorial-callout warning">La gravimetría mide masa. Para identificar sílice, metales u otro compuesto hace falta el análisis específico.</p>
+    </section>
+    <div class="tutorial-actions"><button id="tutorialSkip" class="tutorial-skip">Omitir</button><div><button id="tutorialBack" hidden>Anterior</button><button id="tutorialNext">Siguiente</button><button id="tutorialStart" hidden>Comenzar práctica</button></div></div>
   </dialog>
 
   <footer><b>La Movida de SST Plus</b><span>De la Reacción a la Prevención</span><a href="https://www.movidasst.com">www.movidasst.com</a></footer>
