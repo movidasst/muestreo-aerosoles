@@ -5,20 +5,17 @@ Aplicación educativa de La Movida de SST Plus para practicar el muestreo gravim
 ## Alcance inicial
 
 - Fracciones inhalable y respirable.
-- Muestreador IOM, ciclón de aluminio, ciclón de nylon y cassette tradicional.
+- Muestreador IOM, ciclón de aluminio y ciclón de nylon.
 - Calibración volumétrica con tren completo.
 - Muestreo personal y validación del caudal.
 - Pesaje, corrección mediante blancos, volumen y concentración gravimétrica.
 
 ## Referencias técnicas
 
-- ISO 7708:1995.
-- ISO 15767:2009.
-- ISO 13137:2022.
-- HSE MDHS 14/4.
-- NIOSH NMAM 0600.
-- INSST NTP 814.
-- SKC Publication 1648.
-- COVENIN 2252:1998, como referencia venezolana comparativa.
+- ISO 7708:1995, edición vigente confirmada por ISO en 2023.
+- ISO 15767:2009, edición vigente confirmada por ISO.
+- ISO 13137:2022, requisitos y ensayos para bombas de muestreo personal.
+- HSE MDHS 14/4, métodos generales para muestreo y análisis gravimétrico de aerosoles inhalables, torácicos y respirables.
+- Instrucciones vigentes del fabricante para cada muestreador, bomba y calibrador utilizado.
 
 Sitio: https://aerosoles.movidasst.com
