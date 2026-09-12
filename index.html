@@ -75,7 +75,7 @@
         </div>
         <div class="info-panel"><b>Objetivo del caso</b><p id="objective">Determinar la fracción respirable generada durante el corte de concreto. El análisis específico de sílice requeriría una técnica posterior; aquí practicarás la captación y el cálculo gravimétrico.</p></div>
         <label class="field">Fracción que se debe captar
-          <select id="fraction"><option value="">Selecciona una fracción</option><option value="inhalable">Inhalable</option><option value="thoracic" disabled>Torácica (próximo módulo)</option><option value="respirable">Respirable</option><option value="total">Polvo total tradicional</option></select>
+          <select id="fraction"><option value="">Selecciona una fracción</option><option value="inhalable">Inhalable</option><option value="thoracic" disabled>Torácica (próximo módulo)</option><option value="respirable">Respirable</option></select>
         </label>
         <button class="primary next">Confirmar planificación</button>
       </article>
@@ -95,7 +95,7 @@
             </div>
           </div>
           <div class="choices">
-            <label class="field">Cabezal o selector<select id="sampler"><option value="">Selecciona</option><option value="iom">IOM inhalable</option><option value="aluminum">Ciclón de aluminio</option><option value="nylon">Ciclón de nylon 10 mm</option><option value="cassette">Cassette cerrado de 37 mm</option></select></label>
+            <label class="field">Cabezal o selector<select id="sampler"><option value="">Selecciona</option><option value="iom">IOM inhalable</option><option value="aluminum">Ciclón de aluminio</option><option value="nylon">Ciclón de nylon 10 mm</option></select></label>
             <label class="field">Medio de captación<select id="filter"><option value="">Selecciona</option><option value="pvc5">Filtro PVC 5 µm</option><option value="mce">Ésteres mixtos de celulosa</option><option value="glass">Fibra de vidrio</option></select></label>
             <label class="field">Bomba<select id="pump"><option value="">Selecciona</option><option value="personal">Bomba personal tipo P, flujo constante</option><option value="low">Bomba de bajo flujo para gases</option></select></label>
             <label class="check"><input id="tubeCheck" type="checkbox"> Manguera flexible sin dobleces</label>
@@ -170,7 +170,7 @@
     <div class="manual-quick-start"><strong>Secuencia profesional</strong><ol><li>Planificar</li><li>Preparar</li><li>Calibrar</li><li>Muestrear</li><li>Pesar</li><li>Interpretar</li></ol></div>
     <div class="function-manual">
       <details id="manual-start" open><summary>Procedimiento completo</summary><div class="manual-body"><ol><li><b>Define el objetivo:</b> agente, tarea, trabajadores, periodo y límite aplicable.</li><li><b>Selecciona el método:</b> fracción, muestreador, filtro, caudal y volumen.</li><li><b>Prepara:</b> acondiciona y pesa filtros y blancos; inspecciona bomba y conexiones.</li><li><b>Calibra:</b> mide el caudal volumétrico con el tren representativo completamente armado.</li><li><b>Muestrea:</b> coloca el cabezal en la zona respiratoria y registra tiempo e incidencias.</li><li><b>Verifica:</b> mide el caudal final y aplica el criterio del método.</li><li><b>Analiza:</b> acondiciona, pesa, corrige con blancos y calcula masa/volumen.</li></ol></div></details>
-      <details id="manual-fractions"><summary>Inhalable, torácica y respirable</summary><div class="manual-body"><p><b>Inhalable:</b> material que entra por nariz y boca; puede captarse con IOM a 2,0 L/min. <b>Torácica:</b> penetra más allá de la laringe. <b>Respirable:</b> alcanza la región de intercambio gaseoso; se obtiene con un selector como un ciclón.</p><p class="manual-tip"><b>No son sinónimos:</b> el cassette cerrado tradicional de 37 mm para “polvo total” no representa automáticamente la fracción inhalable ISO 7708.</p></div></details>
+      <details id="manual-fractions"><summary>Inhalable, torácica y respirable</summary><div class="manual-body"><p><b>Inhalable:</b> material que entra por nariz y boca; puede captarse con IOM a 2,0 L/min. <b>Torácica:</b> penetra más allá de la laringe. <b>Respirable:</b> alcanza la región de intercambio gaseoso; se obtiene con un selector como un ciclón.</p><p class="manual-tip"><b>Base vigente:</b> ISO 7708 define las convenciones de tamaño relacionadas con la salud. La edición 1995 fue revisada y confirmada por ISO en 2023, por lo que continúa vigente.</p></div></details>
       <details id="manual-equipment"><summary>Tren y componentes</summary><div class="manual-body"><ul><li><b>Bomba tipo P:</b> mantiene el flujo frente a la contrapresión.</li><li><b>IOM:</b> se pesa normalmente como cassette + filtro.</li><li><b>Ciclón:</b> separa partículas gruesas; el depósito del recipiente no forma parte de la fracción respirable.</li><li><b>Filtro:</b> lo determina el método y el análisis posterior.</li><li><b>Manguera:</b> hermética y sin dobleces.</li></ul></div></details>
       <details id="manual-calibration"><summary>Calibración inicial y final</summary><div class="manual-body"><p>Usa un calibrador trazable y flujo <b>volumétrico</b>. Conecta el tren completo tal como será utilizado y realiza varias lecturas estables. Al finalizar, repite la verificación.</p><p class="manual-tip">MDHS 14/4 invalida una muestra con ciclón si el caudal final difiere del inicial más de 0,1 L/min o 5 %, el valor mayor.</p></div></details>
       <details id="manual-sampling"><summary>Muestreo personal y representatividad</summary><div class="manual-body"><p>Sujeta el cabezal en la parte superior del tórax, próximo a nariz y boca. Registra trabajador, tarea, inicio, final, pausas, controles e incidencias. No inviertas el ciclón y evita golpes, salpicaduras o sobrecarga.</p></div></details>
@@ -194,7 +194,7 @@
       <p class="eyebrow">PASO 1 · PLANIFICAR</p><h2>Primero decides qué fracción necesitas</h2>
       <p>El efecto en la salud y el método analítico determinan si debes captar la fracción inhalable, torácica o respirable. No se escoge el cabezal por apariencia.</p>
       <div class="tutorial-cards"><div><b>Inhalable</b><span>Entra por nariz y boca. En el simulador usarás IOM.</span></div><div><b>Respirable</b><span>Alcanza la región profunda del pulmón. Usarás un ciclón.</span></div></div>
-      <p class="tutorial-callout warning">“Polvo total” mediante cassette cerrado no es automáticamente equivalente a fracción inhalable ISO 7708.</p>
+      <p class="tutorial-callout warning">Cada fracción requiere un muestreador y un caudal que reproduzcan su convención de tamaño. No intercambies selectores ni caudales.</p>
     </section>
     <section class="tutorial-page" data-tutorial-step="2" hidden>
       <p class="eyebrow">PASOS 2 A 4 · CAMPO</p><h2>Arma, calibra y controla la muestra</h2>
