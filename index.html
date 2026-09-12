@@ -72,10 +72,11 @@
           <button class="scenario selected" data-scenario="silica"><span class="scenario-icon">▦</span><b>Corte de concreto</b><small>Sílice / polvo respirable</small></button>
           <button class="scenario" data-scenario="wood"><span class="scenario-icon">≋</span><b>Carpintería</b><small>Polvo de madera inhalable</small></button>
           <button class="scenario" data-scenario="flour"><span class="scenario-icon">◌</span><b>Manipulación de harina</b><small>Polvo orgánico inhalable</small></button>
+          <button class="scenario" data-scenario="caustic"><span class="scenario-icon">◉</span><b>Soda cáustica en aerosol</b><small>Polvos alcalinos · NaOH</small></button>
         </div>
         <div class="info-panel"><b>Objetivo del caso</b><p id="objective">Determinar la fracción respirable generada durante el corte de concreto. El análisis específico de sílice requeriría una técnica posterior; aquí practicarás la captación y el cálculo gravimétrico.</p></div>
         <label class="field">Fracción que se debe captar
-          <select id="fraction"><option value="">Selecciona una fracción</option><option value="inhalable">Inhalable</option><option value="thoracic" disabled>Torácica (próximo módulo)</option><option value="respirable">Respirable</option></select>
+          <select id="fraction"><option value="">Selecciona una fracción</option><option value="inhalable">Inhalable</option><option value="thoracic" disabled>Torácica (próximo módulo)</option><option value="respirable">Respirable</option><option value="alkaline">Aerosol alcalino según NIOSH 7401</option></select>
         </label>
         <button class="primary next">Confirmar planificación</button>
       </article>
@@ -95,8 +96,8 @@
             </div>
           </div>
           <div class="choices">
-            <label class="field">Cabezal o selector<select id="sampler"><option value="">Selecciona</option><option value="iom">IOM inhalable</option><option value="aluminum">Ciclón de aluminio</option><option value="nylon">Ciclón de nylon 10 mm</option></select></label>
-            <label class="field">Medio de captación<select id="filter"><option value="">Selecciona</option><option value="pvc5">Filtro PVC 5 µm</option><option value="mce">Ésteres mixtos de celulosa</option><option value="glass">Fibra de vidrio</option></select></label>
+            <label class="field">Cabezal o selector<select id="sampler"><option value="">Selecciona</option><option value="iom">IOM inhalable</option><option value="aluminum">Ciclón de aluminio</option><option value="nylon">Ciclón de nylon 10 mm</option><option value="ptfe">Cassette con filtro PTFE para NaOH</option></select></label>
+            <label class="field">Medio de captación<select id="filter"><option value="">Selecciona</option><option value="pvc5">Filtro PVC 5 µm</option><option value="ptfe1">Filtro PTFE 1 µm</option><option value="mce">Ésteres mixtos de celulosa</option><option value="glass">Fibra de vidrio</option></select></label>
             <label class="field">Bomba<select id="pump"><option value="">Selecciona</option><option value="personal">Bomba personal tipo P, flujo constante</option><option value="low">Bomba de bajo flujo para gases</option></select></label>
             <label class="check"><input id="tubeCheck" type="checkbox"> Manguera flexible sin dobleces</label>
           </div>
@@ -142,7 +143,7 @@
 
       <article class="stage" data-stage="4">
         <div class="section-heading"><div><span class="step-label">PASO 5</span><h2>Procesa la muestra</h2></div><span class="status neutral">Laboratorio</span></div>
-        <div class="lab-grid">
+        <div class="lab-grid" id="gravimetricLab">
           <div class="balance"><div class="balance-glass"><div class="filter-disc"></div></div><div class="balance-screen"><strong id="balanceValue">0.000</strong> mg</div></div>
           <div class="lab-fields">
             <label class="field">Peso inicial del filtro<input id="initialMass" type="number" step="0.001" value="152.436"><span>mg</span></label>
@@ -150,7 +151,14 @@
             <label class="field">Corrección promedio de blancos<input id="blankMass" type="number" step="0.001" value="0.018"><span>mg</span></label>
           </div>
         </div>
-        <div class="info-panel"><b>Control gravimétrico</b><p>Los filtros y blancos se acondicionan en la misma sala; se controla temperatura, humedad y electricidad estática antes del pesaje.</p></div>
+        <div class="lab-grid" id="causticLab" hidden>
+          <div class="balance"><div class="balance-glass"><div class="filter-disc"></div></div><div class="balance-screen"><strong>NaOH</strong> equivalente</div></div>
+          <div class="lab-fields">
+            <label class="field">NaOH equivalente en la muestra<input id="sampleNaohMass" type="number" step="0.001" value="0.450"><span>mg</span></label>
+            <label class="field">NaOH equivalente en el blanco<input id="blankNaohMass" type="number" step="0.001" value="0.010"><span>mg</span></label>
+          </div>
+        </div>
+        <div class="info-panel" id="labExplanation"><b>Control gravimétrico</b><p>Los filtros y blancos se acondicionan en la misma sala; se controla temperatura, humedad y electricidad estática antes del pesaje.</p></div>
         <button class="primary next">Calcular concentración</button>
       </article>
 
@@ -158,7 +166,7 @@
         <div class="section-heading"><div><span class="step-label">RESULTADO</span><h2>Informe de la muestra</h2></div><span class="status success">Calculado</span></div>
         <div class="result-card"><span>Concentración gravimétrica</span><strong id="concentration">—</strong><em>mg/m³</em><p id="resultMeaning"></p></div>
         <div class="metrics"><div><span>Masa corregida</span><b id="netMass">— mg</b></div><div><span>Volumen muestreado</span><b id="volume">— m³</b></div><div><span>Variación de caudal</span><b id="flowDiff">— %</b></div><div><span>Validez técnica</span><b id="validity">—</b></div></div>
-        <div class="formula"><b>Cálculo aplicado</b><code>C = [(Pf − Pi) − B] / V</code><p>Una concentración gravimétrica indica masa de aerosol por volumen de aire. No identifica por sí sola la composición química del polvo.</p></div>
+        <div class="formula"><b>Cálculo aplicado</b><code id="resultFormula">C = [(Pf − Pi) − B] / V</code><p id="formulaMeaning">Una concentración gravimétrica indica masa de aerosol por volumen de aire. No identifica por sí sola la composición química del polvo.</p></div>
         <div class="actions"><button class="secondary" id="restartBtn">Nueva práctica</button><button class="primary" id="printBtn">Imprimir resultado</button></div>
       </article>
     </section>
@@ -175,6 +183,7 @@
       <details id="manual-calibration"><summary>Calibración inicial y final</summary><div class="manual-body"><p>Usa un calibrador trazable y flujo <b>volumétrico</b>. Conecta el tren completo tal como será utilizado y realiza varias lecturas estables. Al finalizar, repite la verificación.</p><p class="manual-tip">MDHS 14/4 invalida una muestra con ciclón si el caudal final difiere del inicial más de 0,1 L/min o 5 %, el valor mayor.</p></div></details>
       <details id="manual-sampling"><summary>Muestreo personal y representatividad</summary><div class="manual-body"><p>Sujeta el cabezal en la parte superior del tórax, próximo a nariz y boca. Registra trabajador, tarea, inicio, final, pausas, controles e incidencias. No inviertas el ciclón y evita golpes, salpicaduras o sobrecarga.</p></div></details>
       <details id="manual-lab"><summary>Filtros, blancos y pesaje</summary><div class="manual-body"><p>Acondiciona muestras y blancos bajo las mismas condiciones de temperatura y humedad. Utiliza pinzas, elimina electricidad estática y verifica la balanza. MDHS 14/4 indica al menos un blanco por cada diez muestras y un mínimo de tres por lote.</p></div></details>
+      <details id="manual-caustic"><summary>Soda cáustica y método de polvos alcalinos</summary><div class="manual-body"><p>El hidróxido de sodio no se evalúa como un gas que se evapora desde la solución. Puede aparecer en el aire como <b>niebla o aerosol alcalino</b> cuando existe rociado, atomización, agitación intensa, salpicadura o limpieza a presión.</p><p>El caso aplica la lógica de <b>NIOSH NMAM 7401 Alkaline Dusts</b>: captación en filtro PTFE y determinación de alcalinidad total, expresada como NaOH equivalente. El resultado no se obtiene por diferencia gravimétrica del filtro y otros compuestos alcalinos pueden interferir.</p></div></details>
       <details id="manual-calculation"><summary>Volumen y concentración en mg/m³</summary><div class="manual-body"><p><b>Volumen:</b> V = Qprom × t / 1000. <b>Masa corregida:</b> M = (Pf − Pi) − B. <b>Concentración:</b> C = M / V.</p><p class="manual-tip">La gravimetría cuantifica masa de aerosol. Para conocer sílice, metales u otro compuesto se necesita el análisis específico.</p></div></details>
       <details id="manual-errors"><summary>Errores frecuentes</summary><div class="manual-body"><ul><li>Elegir la fracción sin revisar el efecto en salud.</li><li>Calibrar solo la bomba, sin cabezal y filtro.</li><li>Aplicar el mismo caudal a cualquier ciclón.</li><li>Colocar el cabezal fuera de la zona respiratoria.</li><li>Invertir el ciclón o contar el polvo del recipiente.</li><li>No utilizar blancos o no acondicionar los filtros.</li><li>Interpretar una medición corta como toda la jornada.</li></ul></div></details>
     </div><p id="manualEmpty" class="manual-empty" hidden>No encontramos ese término. Prueba con “fracción”, “caudal”, “IOM”, “ciclón” o “blanco”.</p><div class="warning"><b>Uso educativo</b><p>El simulador no sustituye un método validado, calibración trazable, laboratorio competente ni el criterio profesional.</p></div><div class="manual-actions"><button class="secondary" id="openTutorialBtn">Ver recorrido paso a paso</button><button class="primary dialog-close">Volver al simulador</button></div>
