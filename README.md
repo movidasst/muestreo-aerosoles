@@ -5,6 +5,7 @@ Aplicación educativa de La Movida de SST Plus para practicar el muestreo gravim
 ## Alcance inicial
 
 - Fracciones inhalable y respirable.
+- Caso específico de soda cáustica como niebla o aerosol alcalino, no como gas o vapor.
 - Muestreador IOM, ciclón de aluminio y ciclón de nylon.
 - Calibración volumétrica con tren completo.
 - Muestreo personal y validación del caudal.
@@ -17,5 +18,6 @@ Aplicación educativa de La Movida de SST Plus para practicar el muestreo gravim
 - ISO 13137:2022, requisitos y ensayos para bombas de muestreo personal.
 - HSE MDHS 14/4, métodos generales para muestreo y análisis gravimétrico de aerosoles inhalables, torácicos y respirables.
 - Instrucciones vigentes del fabricante para cada muestreador, bomba y calibrador utilizado.
+- NIOSH NMAM 7401, Alkaline Dusts, para captación y determinación de alcalinidad total expresada como NaOH equivalente.
 
 Sitio: https://aerosoles.movidasst.com
