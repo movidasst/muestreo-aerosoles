@@ -11,6 +11,12 @@
     const update = document.createElement('script');
     update.src = 'accuracy-update.js?v=20260913';
     update.async = false;
+    update.onload = () => {
+      const update2 = document.createElement('script');
+      update2.src = 'accuracy-update-2.js?v=20260913';
+      update2.async = false;
+      document.body.appendChild(update2);
+    };
     document.body.appendChild(update);
   };
   document.body.appendChild(core);
