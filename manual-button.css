@@ -1,0 +1,30 @@
+.resource-link.manual-download {
+  min-width: 230px;
+}
+
+.resource-link.manual-download .resource-icon {
+  font-size: 1rem;
+}
+
+.resource-link.manual-download .resource-copy,
+.resource-link.manual-download .resource-copy b,
+.resource-link.manual-download .resource-copy small {
+  display: block;
+}
+
+.resource-link.manual-download .resource-copy small {
+  color: #d6eeee;
+  font-size: .72rem;
+}
+
+@media (max-width: 560px) {
+  .resource-link.manual-download {
+    min-width: 218px;
+  }
+
+  .resource-link.manual-download .resource-copy,
+  .resource-link.manual-download .resource-copy b,
+  .resource-link.manual-download .resource-copy small {
+    display: block !important;
+  }
+}
