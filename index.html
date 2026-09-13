@@ -40,8 +40,13 @@
       <img src="https://raw.githubusercontent.com/movidasst/LABORATORIO/main/assets/logo-movida-sst-plus.png" alt="La Movida de SST Plus">
       <span><b>Laboratorio Virtual</b><small>De la Reacción a la Prevención</small></span>
     </a>
-    <div class="top-actions"><a class="lab-return" href="https://laboratorio.movidasst.com">← <span>Volver al Laboratorio</span></a><a class="manual-download" href="https://drive.google.com/uc?id=1rl4PQrEcmPWE3-yHCwKB4xG6Oy1KO-BS&amp;export=download" target="_blank" rel="noopener">↓ <span>Manual PDF</span></a><span class="member-chip">Hola, <b id="memberName">integrante</b></span><button class="icon-button" id="helpBtn" aria-label="Guía de uso">?</button><button class="logout-button" id="logoutBtn">Salir</button></div>
+    <div class="top-actions"><span class="member-chip">Hola, <b id="memberName">integrante</b></span><button class="icon-button" id="helpBtn" aria-label="Abrir guía de uso">?</button><button class="logout-button" id="logoutBtn">Salir</button></div>
   </header>
+  <nav class="resource-bar" aria-label="Recursos del simulador">
+    <a class="resource-link back-link" href="https://laboratorio.movidasst.com">← Volver al Laboratorio</a>
+    <a class="resource-link manual-download" href="https://drive.google.com/uc?id=1rl4PQrEcmPWE3-yHCwKB4xG6Oy1KO-BS&amp;export=download" target="_blank" rel="noopener"><span class="resource-icon">PDF</span><span><b>Descargar manual de usuario</b><small>Guía completa en PDF</small></span></a>
+    <button class="resource-link guide-link" id="topTutorialBtn" type="button"><span class="resource-icon">▶</span><span><b>Ver tutorial inicial</b><small>Recorrido de cuatro pantallas</small></span></button>
+  </nav>
 
   <main>
     <section class="hero">
@@ -54,6 +59,25 @@
         <button class="active" data-mode="guided">Guiado</button>
         <button data-mode="practice">Práctica</button>
       </div>
+    </section>
+
+    <section class="guide-dashboard" id="guideDashboard" aria-live="polite">
+      <div class="mission-card">
+        <div class="mission-heading"><span id="guideStep">PASO 1 DE 6</span><span id="guidePercent">0%</span></div>
+        <div class="guide-progress" role="progressbar" aria-label="Progreso del recorrido guiado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="guideProgress"></i></div>
+        <h2 id="guideTitle">Planifica antes de seleccionar equipos</h2>
+        <p id="guideText">Primero identifica el agente, la tarea y la fracción o método que corresponde.</p>
+        <ol class="guide-checklist" id="guideChecklist">
+          <li class="current"><i>1</i><span>Planificar</span></li><li><i>2</i><span>Armar</span></li><li><i>3</i><span>Calibrar</span></li><li><i>4</i><span>Muestrear</span></li><li><i>5</i><span>Laboratorio</span></li><li><i>6</i><span>Interpretar</span></li>
+        </ol>
+        <button id="guideAction" class="locate-step" type="button">Muéstrame qué hacer</button>
+      </div>
+      <aside class="learning-card">
+        <div class="learning-heading"><span>PANEL DIDÁCTICO</span><b id="learningTopic">Planificación del muestreo</b></div>
+        <div><span>¿Qué es?</span><p id="learningWhat">Es la definición previa del agente, la tarea, la población y el objetivo de medición.</p></div>
+        <div><span>¿Para qué sirve?</span><p id="learningPurpose">Evita escoger un cabezal, filtro o caudal que no respondan al riesgo que se desea evaluar.</p></div>
+        <div><span>¿Cómo se interpreta?</span><p id="learningInterpret">La fracción o el método seleccionado debe coincidir con el criterio de comparación y con el análisis del laboratorio.</p></div>
+      </aside>
     </section>
 
     <nav class="steps" aria-label="Progreso">
